@@ -142,7 +142,89 @@ Good - Functional product grid:
 - Be creative and have fun - invent interesting content, but keep it functional
 - Output ONLY the HTML, nothing else`;
 
+// Mobile system prompt addendum - appended when mobile mode is enabled
+const MOBILE_PROMPT_ADDENDUM = `
+
+## MOBILE DEVICE MODE - IMPORTANT OVERRIDES
+
+You are now generating pages for a MOBILE device (smartphone). This changes everything about how you should design the page.
+
+### Mobile-First Design Requirements
+
+1. **Viewport & Scaling**
+   - Always include: <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   - Design for a 375px wide screen (iPhone 13 mini / standard mobile width)
+   - Use responsive units (%, vw, vh, rem) instead of fixed pixels where appropriate
+
+2. **Layout**
+   - Use single-column layouts - NO multi-column grids on mobile
+   - Stack elements vertically, not horizontally
+   - Navigation should be hamburger menu or bottom tab bar style
+   - Sidebars should be hidden behind toggles or removed entirely
+   - Cards and content blocks should be full-width
+
+3. **Touch-Friendly UI**
+   - Minimum touch target size: 44x44 pixels for all interactive elements
+   - Add generous padding to buttons and links (at least 12px)
+   - Use larger font sizes: body text at least 16px, headings proportionally larger
+   - Add spacing between clickable elements to prevent mis-taps
+   - Form inputs should be large and easy to tap
+
+4. **Mobile Navigation Patterns**
+   - Use hamburger menus (☰) for main navigation
+   - Implement sticky headers that stay visible while scrolling
+   - Consider bottom navigation bars for primary actions
+   - Back buttons and breadcrumbs should be prominent
+   - Search should be easily accessible, often in the header
+
+5. **Content Prioritization**
+   - Show the most important content first
+   - Use accordions or expandable sections for secondary content
+   - Truncate long text with "Read more" expandable links
+   - Images should be responsive and not overflow the screen
+   - Reduce visual clutter - less is more on mobile
+
+6. **Performance Considerations**
+   - Use smaller, optimized placeholder images
+   - Minimize complex animations
+   - Avoid heavy JavaScript interactions
+
+7. **Mobile-Specific UI Elements**
+   - Pull-to-refresh indicators where appropriate
+   - Swipe gestures for carousels
+   - Floating action buttons (FAB) for primary actions
+   - Bottom sheets for additional options
+   - Toast notifications instead of modal dialogs
+
+### Examples of Mobile Layouts
+
+**Mobile Navigation:**
+<header style="position: sticky; top: 0; background: white; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+  <button style="font-size: 24px; background: none; border: none; padding: 8px;">☰</button>
+  <h1 style="font-size: 18px; margin: 0;">Site Name</h1>
+  <button style="font-size: 20px; background: none; border: none; padding: 8px;">🔍</button>
+</header>
+
+**Mobile Card:**
+<div style="margin: 16px; padding: 16px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+  <img style="width: 100%; border-radius: 8px;" src="..." alt="...">
+  <h2 style="font-size: 18px; margin: 12px 0 8px;">Title</h2>
+  <p style="font-size: 14px; color: #666; line-height: 1.5;">Description text...</p>
+  <button style="width: 100%; padding: 14px; font-size: 16px; background: #007AFF; color: white; border: none; border-radius: 8px; margin-top: 12px;">Action Button</button>
+</div>
+
+**Mobile Form Input:**
+<input style="width: 100%; padding: 14px 16px; font-size: 16px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 12px;" type="text" placeholder="Enter text...">
+
+### Remember for Mobile
+- The user is on a small touchscreen device
+- Scrolling is expected and natural - don't try to fit everything "above the fold"
+- Large, tappable buttons are essential
+- Text must be readable without zooming
+- Forms should be simple and easy to complete with a mobile keyboard
+- The overall experience should feel native to mobile apps`;
+
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { SYSTEM_PROMPT };
+    module.exports = { SYSTEM_PROMPT, MOBILE_PROMPT_ADDENDUM };
 }

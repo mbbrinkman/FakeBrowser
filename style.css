@@ -578,3 +578,265 @@ body {
     color: #666;
     line-height: 1.6;
 }
+
+/* Mobile Responsive - iPhone 13 mini and similar devices */
+@media (max-width: 430px) {
+    body {
+        padding: 0;
+        align-items: stretch;
+    }
+
+    .browser-window {
+        max-width: 100%;
+        height: 100vh;
+        height: 100dvh; /* Dynamic viewport height for mobile browsers */
+        border-radius: 0;
+        border: none;
+    }
+
+    /* Title bar adjustments */
+    .title-bar {
+        padding: 6px 8px;
+        gap: 8px;
+    }
+
+    .window-controls {
+        display: none; /* Hide window controls on mobile */
+    }
+
+    .tab-bar {
+        gap: 2px;
+    }
+
+    .tab {
+        min-width: 80px;
+        max-width: 120px;
+        padding: 5px 6px 5px 10px;
+        gap: 6px;
+    }
+
+    .tab-title {
+        font-size: 11px;
+    }
+
+    .tab-favicon {
+        font-size: 12px;
+    }
+
+    .new-tab-btn {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Navigation bar adjustments */
+    .nav-bar {
+        padding: 6px 8px;
+        gap: 4px;
+        flex-wrap: nowrap;
+    }
+
+    .nav-buttons {
+        gap: 2px;
+    }
+
+    .nav-btn {
+        padding: 6px;
+    }
+
+    .nav-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .url-bar-container {
+        padding: 0 8px;
+        gap: 6px;
+        min-width: 0;
+        flex: 1;
+    }
+
+    .url-icon {
+        font-size: 12px;
+    }
+
+    .url-bar {
+        font-size: 13px;
+        padding: 8px 0;
+        min-width: 0;
+    }
+
+    .go-btn {
+        padding: 5px 12px;
+        font-size: 12px;
+    }
+
+    /* Status bar */
+    .status-bar {
+        padding: 3px 8px;
+    }
+
+    #status-text {
+        font-size: 11px;
+    }
+
+    /* Modal adjustments */
+    .modal-content {
+        width: 95%;
+        max-width: none;
+        margin: 10px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .modal-header {
+        padding: 12px 16px;
+    }
+
+    .modal-header h2 {
+        font-size: 16px;
+    }
+
+    .modal-body {
+        padding: 16px;
+    }
+
+    .setting-group label {
+        font-size: 12px;
+    }
+
+    .setting-group input,
+    .setting-group select {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .setting-group select[size] {
+        height: 160px;
+    }
+
+    .save-btn {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .clear-btn {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .setting-info p {
+        font-size: 11px;
+    }
+}
+
+/* Extra small devices (iPhone SE, etc.) */
+@media (max-width: 375px) {
+    .tab {
+        min-width: 60px;
+        max-width: 100px;
+    }
+
+    .go-btn {
+        padding: 5px 8px;
+    }
+
+    .nav-buttons .nav-btn:nth-child(3),
+    .nav-buttons .nav-btn:nth-child(4) {
+        display: none; /* Hide refresh and home on very small screens */
+    }
+}
+
+/* Landscape mode for mobile */
+@media (max-height: 500px) and (max-width: 900px) {
+    .browser-window {
+        height: 100vh;
+        height: 100dvh;
+    }
+
+    .title-bar {
+        padding: 4px 8px;
+    }
+
+    .nav-bar {
+        padding: 4px 8px;
+    }
+
+    .tab {
+        padding: 4px 6px 4px 8px;
+    }
+
+    .status-bar {
+        padding: 2px 8px;
+    }
+}
+
+/* Toggle switch styles */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toggle-switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--text-secondary);
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.toggle-switch input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+    background-color: var(--bg-primary);
+}
+
+.toggle-label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.toggle-label span:first-child {
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.toggle-label span:last-child {
+    color: var(--text-secondary);
+    font-size: 12px;
+}

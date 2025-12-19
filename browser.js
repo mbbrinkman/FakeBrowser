@@ -34,6 +34,7 @@ class FakeBrowser {
         this.apiKeyInput = document.getElementById('api-key');
         this.modelSearch = document.getElementById('model-search');
         this.modelSelect = document.getElementById('model-select');
+        this.mobileModeCheckbox = document.getElementById('mobile-mode');
         this.saveSettingsBtn = document.getElementById('save-settings');
         this.clearCacheBtn = document.getElementById('clear-cache');
 
@@ -766,6 +767,7 @@ class FakeBrowser {
     async loadSettings() {
         this.currentSettings = await aiService.getSettings();
         this.apiKeyInput.value = this.currentSettings.apiKey || '';
+        this.mobileModeCheckbox.checked = this.currentSettings.mobileMode || false;
     }
 
     async openSettings() {
@@ -779,6 +781,9 @@ class FakeBrowser {
         if (this.currentSettings?.model) {
             this.modelSelect.value = this.currentSettings.model;
         }
+
+        // Set mobile mode checkbox state
+        this.mobileModeCheckbox.checked = this.currentSettings?.mobileMode || false;
     }
 
     closeSettings() {
@@ -788,7 +793,8 @@ class FakeBrowser {
     async saveSettings() {
         this.currentSettings = {
             apiKey: this.apiKeyInput.value,
-            model: this.modelSelect.value
+            model: this.modelSelect.value,
+            mobileMode: this.mobileModeCheckbox.checked
         };
 
         await aiService.saveSettings(this.currentSettings);

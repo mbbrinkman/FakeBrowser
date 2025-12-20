@@ -385,8 +385,8 @@ class FakeBrowser {
         }
 
         // Inject strict Content Security Policy to prevent data exfiltration
-        // This blocks: fetch, XHR, WebSocket, image beacons, form posts, etc.
-        const cspMeta = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; form-action 'none'; frame-src 'none';">`;
+        // This blocks fetch/XHR/WebSocket but allows external images for realism
+        const cspMeta = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src https: http: data: blob:; font-src data:; media-src https: http: data: blob:; connect-src 'none'; form-action 'none'; base-uri 'none';">`;
 
         // Insert CSP at the start of <head> or at the beginning of document
         if (html.includes('<head>')) {

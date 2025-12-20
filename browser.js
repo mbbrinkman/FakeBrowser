@@ -384,6 +384,19 @@ class FakeBrowser {
             }
         }
 
+        // Inject strict Content Security Policy to prevent data exfiltration
+        // This blocks: fetch, XHR, WebSocket, image beacons, form posts, etc.
+        const cspMeta = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; form-action 'none'; frame-src 'none';">`;
+
+        // Insert CSP at the start of <head> or at the beginning of document
+        if (html.includes('<head>')) {
+            html = html.replace('<head>', `<head>${cspMeta}`);
+        } else if (html.includes('<html>')) {
+            html = html.replace('<html>', `<html><head>${cspMeta}</head>`);
+        } else {
+            html = cspMeta + html;
+        }
+
         // Set iframe content
         this.contentFrame.srcdoc = html;
     }

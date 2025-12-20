@@ -56,7 +56,8 @@ class AIService {
                 } else {
                     this.settings = {
                         apiKey: '',
-                        model: ''
+                        model: '',
+                        mobileMode: false
                     };
                 }
                 resolve(this.settings);
@@ -165,6 +166,12 @@ class AIService {
 
         const userMessage = `Generate an HTML page for the following URL: ${url}`;
 
+        // Build system prompt - append mobile addendum if mobile mode is enabled
+        let systemPrompt = SYSTEM_PROMPT;
+        if (settings.mobileMode && typeof MOBILE_PROMPT_ADDENDUM !== 'undefined') {
+            systemPrompt += MOBILE_PROMPT_ADDENDUM;
+        }
+
         const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
             method: 'POST',
             headers: {
@@ -177,7 +184,7 @@ class AIService {
                 model: settings.model,
                 max_tokens: 16000,
                 messages: [
-                    { role: 'system', content: SYSTEM_PROMPT },
+                    { role: 'system', content: systemPrompt },
                     { role: 'user', content: userMessage }
                 ]
             })

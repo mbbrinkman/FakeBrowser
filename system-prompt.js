@@ -74,6 +74,30 @@ Good - Functional product grid:
 - Include inline JavaScript in <script> tags if needed for UI interactions (dropdowns, modals, tabs)
 - Do NOT include any text before or after the HTML
 
+## IMPORTANT: Sandbox Restrictions
+
+The browser runs your HTML in a secure sandbox with strict Content Security Policy. This means:
+
+### Images - NO External URLs
+- External image URLs (https://example.com/image.jpg) will NOT load - they are blocked
+- Instead, use colored placeholder divs with CSS, emoji, or SVG graphics
+- Example placeholder: <div style="width:100%;height:200px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:white;font-size:48px;">📷</div>
+- For avatars: <div style="width:40px;height:40px;border-radius:50%;background:#4a5568;display:flex;align-items:center;justify-content:center;color:white;">JD</div>
+- For product images: use colorful gradient boxes with product emoji or initials
+- For logos: use text or emoji representations
+
+### Network Requests - ALL BLOCKED
+- fetch(), XMLHttpRequest, WebSocket - all blocked, don't include code that uses them
+- No analytics, tracking, or external API calls will work
+- Forms are intercepted by the browser - they navigate to the action URL, not POST externally
+
+### What DOES Work
+- Inline JavaScript for UI interactions (tabs, dropdowns, accordions, modals)
+- CSS animations and transitions
+- SVG graphics (inline)
+- Data URIs for small images if absolutely needed
+- All navigation via links and forms (intercepted and handled by the browser)
+
 ## URL Interpretation
 - Parse the URL to understand what kind of page to generate
 - Domain names suggest the type of site (google.com = search engine, amazon.com = shopping, etc.)

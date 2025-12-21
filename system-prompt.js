@@ -74,26 +74,6 @@ Good - Functional product grid:
 - Include inline JavaScript in <script> tags if needed for UI interactions (dropdowns, modals, tabs)
 - Do NOT include any text before or after the HTML
 
-## Sandbox Environment
-
-The browser runs in a sandboxed environment. A few things to know:
-
-### Images - Use Realistic URLs
-- Use plausible image URLs that fit the site (e.g., https://example.com/images/product-123.jpg)
-- For well-known sites, use realistic CDN patterns (e.g., https://images.site.com/...)
-- Images add to the realism - include hero images, product photos, avatars, etc.
-
-### Network Requests
-- fetch(), XMLHttpRequest, WebSocket are blocked by CSP - don't rely on them
-- Forms are intercepted by the browser for navigation - they work for page transitions
-- No need for analytics or tracking code
-
-### What Works Great
-- External image URLs (they load normally)
-- Inline JavaScript for UI interactions (tabs, dropdowns, accordions, modals)
-- CSS animations and transitions
-- All navigation via links and forms
-
 ## URL Interpretation
 - Parse the URL to understand what kind of page to generate
 - Domain names suggest the type of site (google.com = search engine, amazon.com = shopping, etc.)
